@@ -1,0 +1,53 @@
+1. form.html
+
+<form action="/pro" method="get">
+	아이디 : <input type="text" name="id" /><br />
+	비밀번호 : <input type="text" name="pw" /><br />
+	이메일 : <input type="email" name="email" /><br />
+	성별 : 
+			남성 <input type="radio" name="gender" value="male"/>
+			여성 <input type="radio" name="gender" value="female"/><br />
+	취미 : 독서 <input type="checkbox" name="hobby" value="book" />
+		 	 여행 <input type="checkbox" name="hobby" value="trip" />
+			 운동 <input type="checkbox" name="hobby" value="exercise" /><br />
+	국가: 		  
+			<select name="country"  required>
+				<option value="korea">대한민국</option>
+				<option value="america">미국</option>
+				<option value="china">중국</option>
+				<option value="japan">일본</option>
+			</select><br />
+	
+	<input type="submit" value="가입하기" />
+</form>
+
+2. pro.html
+
+<h1>회원가입이 완료</h1>
+
+아이디: <span th:text="${dto.id}"></span><br />
+비밀번호: <span th:text="${dto.pw}"></span><br />
+이메일: <span th:text="${dto.email}"></span><br />
+성별: <span th:text="${dto.gender}"></span><br />
+취미: <span th:text="${dto.hobby}"></span><br />
+국가: <span th:text="${dto.country}"></span>
+
+pro에서는 타임리프 텍스트로 dto에 저장된 값을 꺼내줘서 화면에 보이게 한다.
+
+-----------------
+
+3. MemberDTO.java
+
+package com.ex.controller;
+
+import lombok.Data;
+
+@Data
+public class MemberDTO {
+	private String id;
+	private String pw;
+	private String email;
+	private String gender;
+	private String hobby;
+	private String country;
+}
