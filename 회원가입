@@ -1,0 +1,31 @@
+스프링 부트로 회원가입 만들기
+
+form.html / pro.html / MemberDTO.java / JoinController.java
+
+1. 컨트롤에서 form.html로
+2. form (뷰)에서 사용자가 입력한 값을 다시 컨트롤로
+3. 컨트롤에서 pro.html(뷰)로 보내서 사용자에게 가입완료 화면을 띄움
+
+모든 시작은 컨트롤이다.
+
+1. JoinController.java
+
+package com.ex.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+@Controller
+public class JoinController {
+
+		@GetMapping("/form")	// 일단 form.html 으로 요청을 보내주고 리턴하기
+		public String form() {
+			return "form";
+		}	
+		@GetMapping("/pro")	// pro.html에 여러 값을 보내기 - MemberDTO에 저장된 값을 보내서 회원가입정보를 띄움
+		public String pro(Model model, MemberDTO dto) {		// 모델과 dto를 보냄
+			model.addAttribute("dto", dto);	// 모델에 dto 속성을 추가하는 것 
+			return "pro";		// 그리고 다시 결과값을 리턴받기
+		}
+	}
+---------------------
